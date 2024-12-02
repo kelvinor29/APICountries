@@ -43,50 +43,65 @@
         </nav>
     </header>
 
-    <main class="main container mt-4">
+    <main class="main container-md mt-4">
 
         <h2>Lista de Países</h2>
 
-        <section class="countries-list mt-3 d-flex gap-3">
+        <section id="countries-list" class="countries-list mt-3 d-flex gap-3 flex-wrap justify-content-around">
 
-            <div class="cardC">
-
-                <img class="cardC__img" src="/images/icon-planet.png" alt="">
-
-                <div class="card__info">
-                    <div class="card__info--name">
-                        <h5 id="country-name">Country Name</h5>
-                        <div id="card__detail" class="card__detail"><p id="country-detail">Language</p></div>
-                    </div>
-                    <p id="country-offName">Official Name</p>
-                    <button class="btn btn-card">Ver Detalles</button>
-                </div>
-
-            </div>
-
-            <div class="cardC">
-
-                <img class="cardC__img" src="/images/icon-planet.png" alt="">
-
-                <div class="card__info">
-                    <div class="card__info--name">
-                        <h5 id="country-name">Country Name</h5>
-                        <div id="card__detail" class="card__detail"><p id="country-detail">Language</p></div>
-                    </div>
-                    <p id="country-offName">Official Name</p>
-                    <button class="btn btn-card">Ver Detalles</button>
-                </div>
-
-            </div>
+            <!-- Aqui la lista de paises -->
 
         </section>
 
+
+        <!-- Template -->
+         <template id="template-country">
+            <div class="cardC">
+
+                <div class="card__body">
+
+                    <div class="card__info">
+                        <h5 id="country-name">Country Name</h5>
+                        <p id="country-offName">Official Name</p>
+                    </div>
+                    
+                    <div class="card__btn">
+                        <div id="card__detail" class="card__detail">
+                            <p id="country-detail">Language</p>
+                        </div>
+                        <button class="btn btn-card">Ver Detalles</button>
+                    </div>
+                </div>
+            </div>
+
+         </template>
+
+         <!-- Modal de cada pais -->
+        <div class="modal fade" id="modalCard" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="modalLabel">Modal title</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
     <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+
+    <script src="/docs/JS/RequestData.js"></script>
+    <script src="/docs/JS/DisplayCountries.js"></script>
 </body>
 
 </html>
