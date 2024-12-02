@@ -1,0 +1,82 @@
+:root{
+    --white: #f5f5f5;
+    --blue: rgb(27, 125, 238);
+    --blue-transparent: rgba(27, 125, 238, 0.315);
+}
+
+.logo{
+    width: 2em;
+}
+
+/* Cartas */
+.icon{
+    width: 25px;
+}
+
+.cardC{
+    background-color: var(--white);
+    border-radius: 0.5em;
+    width: 100%;
+    display: flex;
+    max-height: 17vh;
+}
+
+.cardC__img{
+    width: 40%;
+    object-fit: cover;
+}
+
+.card__info{
+    margin: 1em;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.card__info--name{
+    display: flex;
+    gap: 1em;
+    justify-content: space-between;
+}
+
+.btn-card{
+    background-color: var(--blue);
+    color: var(--white);
+    padding: 2px 2em;
+    width: 100%;
+}
+
+.cardC #country-name, .cardC #country-detail{
+    margin-bottom: 2px;
+}
+
+.cardC .card__detail{
+    display: none;
+}
+
+@media (min-width: 768px) {
+
+    .cardC .card__detail{
+        display: flex;
+        background-color: var(--blue-transparent);
+        padding: 0px 20px;
+        border-radius: 1em;
+    }
+
+    .btn-card{
+        width: max-content;
+    }
+}
+
+@media (min-width: 768px) {
+    .cardC__img{
+        max-width: 25%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .cardC{
+        max-width: 50%;
+    }
+}
