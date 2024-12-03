@@ -53,8 +53,108 @@
 
         </section>
 
+        <!-- Template "Little Card" -->
+        <template id="template-little-card">
 
-        <!-- Template -->
+            <div class="card--litle d-flex mb-1">
+                <div class="card-body">
+                    <p id="currency-symbol">$</p>
+                    <p id="currency-name" class="fw-semibold">Lorem Ipsum</p>
+                </div>
+            </div>
+        </template>
+
+        <!-- Modal de cada pais -->
+        <div class="modal fade" id="modalCard" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+                <div class="modal-content">
+                    <section class="modal-header d-flex justify-content-between">
+
+                        <div
+                            class="modal-header-info d-lg-flex justify-content-around align-items-center flex-row w-100">
+
+                            <div class="country__name">
+                                <h2 class="modal-title fs-1" id="modalLabel">Country Name</h2>
+                                <h6 id="modal-offName">Official Name</h6>
+                            </div>
+                            <img id="modal-flag" src="" alt="" class="modal__img">
+                        </div>
+
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </section>
+
+                    <section class="modal-body row">
+
+                        <!-- Location -->
+                        <div class="col-12 col-md-6 col-lg-4 mb-3">
+
+                            <article class="modalCard">
+
+                                <div class="modalCard__title">
+
+                                    <div class="modalCard__location d-flex gap-2 mb-3 align-items-center">
+                                        <img class="icon" src="/images/icon-location.svg" alt="">
+                                        <h6>Ubicacion</h6>
+                                    </div>
+                                    <p id="country-capital">Capital: </p>
+                                    <p id="country-region">Región: </p>
+                                    <p id="country-continent">Continentes: </p>
+
+                                </div>
+
+                            </article>
+                        </div>
+
+
+                        <!-- Population -->
+                        <div class="col-12 col-md-6 col-lg-4 mb-3">
+
+                            <article class="modalCard">
+
+                                <div class="modalCard__title">
+                                    <div class="modalCard__location d-flex gap-2 mb-3">
+                                        <img class="icon" src="/images/icon-users.svg" alt="">
+                                        <h6>Población</h6>
+                                    </div>
+
+                                    <div class="modalCard__location">
+                                        <h4 id="country-population" class="fw-semibold">00.000.000</h4>
+                                    </div>
+
+                                </div>
+
+                            </article>
+                        </div>
+
+                        <!-- Currencies -->
+                        <div class="col-12 col-lg-4 mb-3">
+
+                            <article class="modalCard ">
+
+                                <div class="modalCard__title">
+                                    <div class="modalCard__location d-flex gap-2 mb-3">
+                                        <img class="icon" src="/images/icon-users.svg" alt="">
+                                        <h6>Monedas</h6>
+                                    </div>
+
+                                    <div id="card-container" class="d-flex gap-2">
+                                    </div>
+
+                                </div>
+
+                            </article>
+                        </div>
+
+                    </section>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Template Card -->
         <template id="template-country">
             <div class="card col-12 ">
 
@@ -71,91 +171,11 @@
                         </div>
                     </div>
 
-                    <button class="btn btn-card mt-2">Ver Detalles</button>
+                    <button id="country-info" class="btn btn-card mt-2">Ver Detalles</button>
                 </div>
             </div>
 
         </template>
-
-        <!-- Modal de cada pais -->
-        <div class="modal fade" id="modalCard" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-xl modal-dialog-centered">
-                <div class="modal-content">
-                    <section class="modal-header d-flex justify-content-between">
-
-                        <div class="modal-header-info  d-flex justify-content-around align-items-center flex-row w-100">
-
-                            <div class="country__name">
-                                <h2 class="modal-title fs-1" id="modalLabel">Country Name</h2>
-                                <h6 id="modal-offName">Official Name</h6>
-                            </div>
-                            <img id="modal-flag" src="" alt="" class="modal__img">
-                        </div>
-
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </section>
-
-                    <section class="modal-body row gap-3">
-
-                        <!-- Location -->
-                        <article class="modalCard col-12 col-sm-6 col-lg-4">
-
-                            <div class="modalCard__title">
-
-                                <div class="modalCard__location d-flex gap-2 mb-3 align-items-center">
-                                    <img class="icon" src="/images/icon-location.svg" alt="">
-                                    <h6>Ubicacion</h6>
-                                </div>
-                                <p id="country-capital">Capital: </p>
-                                <p id="country-region">Región: </p>
-                                <p id="country-Continent">Continentes: </p>
-
-                            </div>
-
-                        </article>
-
-                        <!-- Population -->
-                        <article class="modalCard col-12 col-sm-6 col-lg-4">
-
-                            <div class="modalCard__title">
-                                <div class="modalCard__location d-flex gap-2 mb-3">
-                                    <img class="icon" src="/images/icon-users.svg" alt="">
-                                    <h6>Población</h6>
-                                </div>
-
-                                <div class="modalCard__location">
-                                    <h4 id="country-population" class="fw-semibold">00.000.000</h4>
-                                </div>
-
-                            </div>
-
-                        </article>
-
-                        <!-- Currencies -->
-                        <article class="modalCard col-12 col-sm-6 col-lg-4">
-
-                            <div class="modalCard__title">
-                                <div class="modalCard__location d-flex gap-2 mb-3">
-                                    <img class="icon" src="/images/icon-users.svg" alt="">
-                                    <h6>Monedas</h6>
-                                </div>
-
-                                <div class="modalCard__location">
-                                    <p id="country-currencies" >00.000.000</p>
-                                </div>
-
-                            </div>
-
-                        </article>
-
-                    </section>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
     </main>
 
     <!-- Bootstrap -->

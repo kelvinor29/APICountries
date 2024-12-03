@@ -16,11 +16,13 @@ async function RequestDataJSON(){
     
             // Guarda la lista de paises en el LocalStorage
             localStorage.setItem("Countries", JSON.stringify(data));
-    
+            console.log('Datos cargados desde el json')
+
         }
         else{
             // Conversion de datos guardados
             data = JSON.parse(localStorage.getItem("Countries"));
+            console.log('Datos cargados desde el locale storage')
         }
 
         return data;
