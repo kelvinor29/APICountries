@@ -112,7 +112,7 @@ function ShowModal(country){
     if(country.languages != undefined){
 
         let languages = Object.values(country.languages);
-        
+
         containerLanguages.innerHTML = '';
 
         // Creacion de la carta por cada lenguaje existente
