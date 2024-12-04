@@ -82,8 +82,7 @@
 }
 
 .icon{
-    width: 25px;
-    
+    width: 22px;   
 }
 
 .modal-body{
@@ -100,7 +99,10 @@
     font-size: 1em;
 }
 
-
+/* Países por Región */
+#select-regions{
+    max-width: max-content;
+}
 
 @media (min-width: 768px) {
 

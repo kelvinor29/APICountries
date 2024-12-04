@@ -1,30 +1,45 @@
+if(!localStorage.FilterName){
+    localStorage.setItem('FilterName', '')
+}
+if(!localStorage.FilterRegion){
+    localStorage.setItem('FilterRegion', '')
+}
+
 // Funcion para buscar los paises y mostrarlos
-async function DisplayCountries(filter){ // Recibe el nombre del pais
+async function DisplayCountries(filterName = null, filterRegion = null){ // Recibe el nombre del pais y/o la región
     try {
-        const countriesList = await RequestDataJSON();
+        let countriesList = await RequestDataJSON();
+        
+        // Validar si al llamado de la funcion se le recibe el argumento de filtrado por nombre
+        if(filterName){
+            countriesList = countriesList.filter(country => 
+                (country.name.common.toUpperCase())
+                .startsWith(filterName.toUpperCase()));
 
-        // Validar si se solicita un filtrado o no para mostrarlos
-        if(filter == undefined) {
-            RenderCard(countriesList);
+            console.log('Filtrado por nombre');
         }
-        else{
-            const countriesFiltered = countriesList.filter(country => (country.name.common.toUpperCase()).startsWith(filter.toUpperCase()));
 
-            RenderCard(countriesFiltered);
+        if(filterRegion){
+            countriesList = countriesList.filter(country => (country.region).includes(filterRegion));
+            console.log('Filtrado por región');
         }
+
+        RenderCard(countriesList);    
 
     } catch (error) {
         console.log(`Error displaying country's data: `, error);
     }
 }
 
+let regions = [];
 // Funcion para la renderizacion de la carta junto a los datos de cada uno
 function RenderCard(countriesList){
 
     const templateCard = document.getElementById('template-country');
     const countriesContainer = document.getElementById('countries-list');
-
+    
     countriesContainer.innerHTML = '';
+    regions = [];
 
     countriesList.forEach(country => {
 
@@ -37,19 +52,20 @@ function RenderCard(countriesList){
         cardClone.getElementById('country-offName').textContent = country.name.official;
         cardClone.getElementById('country-detail').textContent = country.region;
 
-        const countryCard = cardClone.querySelector('.card')
-
         // Modal
         cardClone.getElementById('country-info').addEventListener('click', () =>{
-
             ShowModal(country);
-
         });
 
         countriesContainer.appendChild(cardClone);
 
+        regions.push(String(country.region));
+
     });
-}
+
+    regions = [...new Set(regions)];
+
+}   
 
 function ShowModal(country){
     // Modal
@@ -62,7 +78,11 @@ function ShowModal(country){
     const countryRegion = document.getElementById('country-region');
     const countryContinents = document.getElementById('country-continent');
     const countryPopulation = document.getElementById('country-population');
+    const countryTranslateOff = document.getElementById('country-translateOff');
+    const countryTranslateName = document.getElementById('country-translateName');
+
     const cardContainer = document.getElementById('card-container');
+    const containerLanguages = document.getElementById('container-languages');
 
     // Monedas
     // Validar si el país tiene alguna moneda
@@ -85,32 +105,55 @@ function ShowModal(country){
 
     }
     else{
-        cardContainer.textContent = 'El país no tiene ninguna moneda';
+        cardContainer.textContent = 'El país no tiene ninguna moneda.';
     }
 
+    // Lenguajes que se usa en el país
+    if(country.languages != undefined){
+
+        let languages = Object.values(country.languages);
+        
+        containerLanguages.innerHTML = '';
+
+        // Creacion de la carta por cada lenguaje existente
+        languages.forEach(languages => {
+            const t_littleCard = document.getElementById('template-little-card');
+            
+            const cardClone = t_littleCard.content.cloneNode(true);
+            cardClone.getElementById('currency-symbol').textContent = languages;
+            
+            containerLanguages.appendChild(cardClone);
+        });
+
+    }
+    else{
+        containerLanguages.textContent = 'El país no tiene ningún lenguaje oficial.';
+    }
+
+    // Más Contenido
     modalTitle.textContent = country.name.common;
     countryOffName.textContent = country.name.official;
     countryFlag.src = country.flags.svg;
-    countryFlag.alt = country.flags.alt || `Bandera del país ${country.name.common}`;
+    countryFlag.alt = country.flags.alt || `Bandera del país ${country.name.common}.`;
 
     country.capital == undefined
-        ? countryCapital.textContent = 'Capital: Ninguna'
-        : countryCapital.textContent = `Capital: ${country.capital}`;
+        ? countryCapital.textContent = 'Capital: Ninguna.'
+        : countryCapital.textContent = `Capital: ${country.capital}.`;
     
     country.region == undefined
-        ? countryRegion.textContent = 'Región: Ninguna'
-        : countryRegion.textContent = `Región: ${country.region}`;
+        ? countryRegion.textContent = 'Región: Ninguna.'
+        : countryRegion.textContent = `Región: ${country.region}.`;
     
     country.continents == undefined
-        ? countryContinents.textContent = `Continente: Ninguna`
-        : countryContinents.textContent = `Continente: ${country.continents}`;
+        ? countryContinents.textContent = `Continente: Ninguna.`
+        : countryContinents.textContent = `Continente: ${country.continents}.`;
 
     countryPopulation.textContent = country.population.toLocaleString('es-ES');
 
+    countryTranslateName.textContent = country.translations.spa.common;
+    countryTranslateOff.textContent = country.translations.spa.official;
 
     modalCountry.show();
-
 }
-
 
 DisplayCountries();
